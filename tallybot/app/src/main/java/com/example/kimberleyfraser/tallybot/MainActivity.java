@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     EditText word;
     Button submit;
     Button seeResults;
+    DatabaseRepository db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Button tallyButton;
         tallyButton = (Button)findViewById(R.id.tallyButton);
+        db = new DatabaseRepository();
 
         tallyButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,5 +34,6 @@ public class MainActivity extends AppCompatActivity {
         submit = findViewById(R.id.submit);
         seeResults = findViewById(R.id.tallyButton);
 
+        db.updateWord("asdf");
     }
 }
