@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         word = findViewById(R.id.word);
         submit = findViewById(R.id.submit);
-        seeResults = findViewById(R.id.results);
+        seeResults = findViewById(R.id.tallyButton);
 
     }
 }

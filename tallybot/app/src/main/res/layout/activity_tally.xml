@@ -16,6 +16,7 @@
     </ListView>
 
     <Button
+        android:id="@+id/enterInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Enter info"
