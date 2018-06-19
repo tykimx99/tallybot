@@ -3,6 +3,7 @@ package com.example.kimberleyfraser.tallybot;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -14,29 +15,28 @@ import com.google.firebase.database.ValueEventListener;
 public class DatabaseRepository {
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("words");
 
-    public void updateWord(String word) {
-        WordModel newWord = new WordModel(-1, false);
-        mDatabase.child(word).setValue(newWord);
-        mDatabase.child("jkl;").setValue(newWord);
+    public void updateWord(final String word) {
 
-        mDatabase.runTransaction(new Transaction.Handler() {
-            @NonNull
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
-                WordModel updateWord = mutableData.getValue(WordModel.class);
-                if(updateWord == null){
-                    return Transaction.success(mutableData);
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                WordModel newWord;
+                if(dataSnapshot.child(word).getValue(WordModel.class) == null) {
+                    newWord = new WordModel(1, false);
+                } else {
+
+                    int tmp = dataSnapshot.child(word).getValue(WordModel.class).instances;
+                    newWord = new WordModel(tmp+1, false);
                 }
-                return Transaction.success(mutableData);
+                mDatabase.child(word).setValue(newWord);
             }
 
             @Override
-            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
+
+
     }
-
-
-            //addValueEventListener(postListener);
 }
