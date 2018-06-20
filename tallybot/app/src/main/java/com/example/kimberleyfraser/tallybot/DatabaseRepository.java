@@ -24,9 +24,9 @@ public class DatabaseRepository {
                 if(dataSnapshot.child(word).getValue(WordModel.class) == null) {
                     newWord = new WordModel(1, false);
                 } else {
-
                     int tmp = dataSnapshot.child(word).getValue(WordModel.class).instances;
-                    newWord = new WordModel(tmp+1, false);
+                    boolean archived = dataSnapshot.child(word).getValue(WordModel.class).archived;
+                    newWord = new WordModel(tmp+1, archived);
                 }
                 mDatabase.child(word).setValue(newWord);
             }

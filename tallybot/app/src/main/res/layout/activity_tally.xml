@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_tally"
     android:layout_width="match_parent"
@@ -9,7 +9,7 @@
     <ListView
         android:id="@+id/tallyList"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
         android:drawSelectorOnTop="true">
 
@@ -20,8 +20,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Enter info"
-        android:textSize="18dp">
+        android:textSize="18dp"
+        android:layout_alignParentBottom="true">
     </Button>
 
 
-</LinearLayout>
+</RelativeLayout>

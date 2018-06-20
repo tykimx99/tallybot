@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 db.updateWord(word.getText().toString());
+                word.setText("");
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("Success").setMessage("Word Saved.").create().show();
             }
